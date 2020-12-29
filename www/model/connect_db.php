@@ -1,15 +1,16 @@
 <?php
-/**DBハンドルの取得*/
-    function get_db_connect() {
+    
+    function get_db_connect(){
+        $dsn = 'mysql:dbname='. DB_NAME .';host='. DB_HOST .';charset='.DB_CHARSET;
+    
         try {
-        // データベースに接続
-        $dbh = new PDO(DSN, DB_USER, DB_PASSWD, array(PDO::MYSQL_ATTR_INIT_COMMAND => DB_CHARSET));
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $db = new PDO($dsn, DB_USER, DB_PASSWD, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-        throw $e;
+            exit('接続できませんでした。理由：'.$e->getMessage() ); 
         }
-        
-        return $dbh;
+        return $db;
     }
 ?>
