@@ -13,4 +13,36 @@
         }
         return $db;
     }
+
+    function fetch_query($db, $sql, $params = array()){
+        try{
+          $statement = $db->prepare($sql);
+          $statement->execute($params);
+          return $statement->fetch();
+        }catch(PDOException $e){
+          set_error('データ取得に失敗しました。');
+        }
+        return false;
+      }
+      
+      function fetch_all_query($db, $sql, $params = array()){
+        try{
+          $statement = $db->prepare($sql);
+          $statement->execute($params);
+          return $statement->fetchAll();
+        }catch(PDOException $e){
+          set_error('データ取得に失敗しました。');
+        }
+        return false;
+      }
+      
+      function execute_query($db, $sql, $params = array()){
+        try{
+          $statement = $db->prepare($sql);
+          return $statement->execute($params);
+        }catch(PDOException $e){
+          throw $e; 
+        }
+        return false;
+      }
 ?>

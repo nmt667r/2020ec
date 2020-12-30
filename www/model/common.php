@@ -7,6 +7,7 @@ require_once '../model/session.php';
 get_local_model();
 
 session_start();
+$dbh = get_db_connect();
 
 function get_own_informetion(){
     $own_directory = explode('/',$_SERVER['PHP_SELF']);
