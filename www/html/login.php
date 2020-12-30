@@ -1,8 +1,6 @@
 <?php
-    require_once '../conf/const.php';
-    require_once '../conf/error_messages.php';
-    require_once '../model/connect_db.php';
-    require_once '../model/login.php';   
+    require_once '../model/common.php'; 
+    
     $dbh = get_db_connect();
 
     $err_msg = [];    
@@ -11,6 +9,7 @@
         if(count($err_msg = check_empty_post($_POST['login_name'], $_POST['login_password'])) === 0){
             if(count($err_msg = check_login_user($_POST['login_name'], $_POST['login_password'], $dbh)) === 0){                
                 $login_user = find_user($_POST['login_name'],$dbh);
+                set_session_name($login_user['name']);
                 header('Location:'. HOME_PATH);
                 exit;
             }            
