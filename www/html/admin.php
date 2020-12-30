@@ -1,10 +1,12 @@
 <?php
 
 require_once '../model/common.php'; 
+require_once '../model/upload_image.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($_POST['action'] ==='insert'){
-        insert_item($dbh, $_POST['item_name'], $_POST['price'], $_POST['img'], $_POST['status']);
+        $img_name = upload_image($_FILES);
+        insert_item($dbh, $_POST['item_name'], $_POST['price'], $img_name, $_POST['status']);
     }
 }
 

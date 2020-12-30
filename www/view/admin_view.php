@@ -13,7 +13,7 @@
         <form method="post" enctype="multipart/form-data">
             <input type="text" name="item_name" id="name">
             <input type="text" name="price">
-            <input type="text" name="img" id="image">
+            <input type="file" name="img" id="image">
             <select name="status" id="status">
                 <option value="close">非公開</option>
                 <option value="open">公開</option>                
