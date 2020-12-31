@@ -6,6 +6,10 @@
     </head>
     <body>
         <h1>商品管理一覧</h1>
+        <?php foreach ($err_msg as $read) { ?>
+            <p><?php print $read; ?></p>
+        <?php } ?>
+
         <?php foreach ($items as $item) { ?>
             <p><?php print $item['name']; print $item['price']; print $item['create_datetime'];?></p>
         <?php } ?>
