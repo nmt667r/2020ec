@@ -18,7 +18,8 @@
             <p>作成日時：<?php print $item['create_datetime'];?></p>
             <form action="./cart.php" method="post">
                 <input type="submit" value="カートに追加">
-                <input type="hidden" value="<?php print $item['id']?>">    
+                <input type="hidden" name="amount" value="1"> 
+                <input type="hidden" name="item_id" value="<?php print $item['id']?>">    
             </form>
         <?php } ?>
 
