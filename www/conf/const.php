@@ -10,7 +10,7 @@ define('DB_CHARSET', 'utf8');
 define('HOME_PATH', './home.php');
 define('LOGIN_PATH', './login.php');
 
-define('ITEMS_IMG_DIR', '../view/items_image/');
+define('ITEMS_IMG_DIR', './items_image/');
 
 define('ITEM_NAME_LENGTH_MAX', 30);
 define('ITEM_PRICE_MAX', 100000000);
