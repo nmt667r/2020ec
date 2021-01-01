@@ -17,6 +17,24 @@ function get_all_items($dbh){
     return fetch_all_query($dbh, $sql);
   }
 
+  function get_active_items($dbh){
+    $sql = '
+      SELECT
+        id,
+        name,
+        price,
+        stock,
+        img,
+        status,
+        create_datetime,
+        update_datetime
+      FROM
+        items
+      WHERE status = 1
+    ';  
+    return fetch_all_query($dbh, $sql);
+  }
+
   function insert_item($dbh, $name, $price, $stock, $filename, $status){
     $status_value = PERMITTED_ITEM_STATUSES[$status];
     $sql = "
