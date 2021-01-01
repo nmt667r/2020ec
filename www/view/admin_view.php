@@ -17,6 +17,7 @@
         <form method="post" enctype="multipart/form-data">
             <input type="text" name="item_name" id="name">
             <input type="text" name="price">
+            <input type="text" name="stock">
             <input type="file" name="img" id="image">
             <select name="status" id="status">
                 <option value="close">非公開</option>

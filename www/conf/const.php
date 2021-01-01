@@ -14,6 +14,7 @@ define('ITEMS_IMG_DIR', '../view/items_image/');
 
 define('ITEM_NAME_LENGTH_MAX', 30);
 define('ITEM_PRICE_MAX', 100000000);
+define('ITEM_STOCK_MAX', 100000);
 
 define('HALF_SPACE', '/^[ ]+$/' );
 define('ALL_SPACE' , '/^[　]+$/');

@@ -1,6 +1,6 @@
 <?php
 
-    function is_Valid_insert_item($name, $price, $img){
+    function is_Valid_insert_item($name, $price, $stock, $img){
         $array_errors = [];
         if(empty($name)){
             $array_errors[] = EMPTY_ITEM_NAME;
@@ -16,17 +16,15 @@
             $array_errors[] = ILLEGAL_VALUE_PRICE;
         } else if (mb_strlen($price) > ITEM_PRICE_MAX){
             $array_errors[] = OVER_LENGTH_PRICE;
-        }
-
-        /**
+        }        
         if(empty($stock)){
             $array_errors[] = EMPTY_STOCK;
         }else if(preg_match(REGEXP_NUMBER, $stock) === 0){
             $array_errors[] = ILLEGAL_VALUE_STOCK;
-        } else if (mb_strlen($stock) > ITEM_PRICE_STOCK){
+        } else if (mb_strlen($stock) > ITEM_STOCK_MAX){
             $array_errors[] = OVER_LENGTH_STOCK;
         }
-        */
+        
 
         if (is_uploaded_file($img['img']['tmp_name']) === TRUE) {
             $extension = pathinfo($img['img']['name'], PATHINFO_EXTENSION);
