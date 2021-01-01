@@ -16,6 +16,10 @@
             <p><?php print $item['stock']; ?>個</p>
             <!-- <p><img src="<?php print ITEMS_IMG_DIR . $item['img']; ?>"></p> -->
             <p>作成日時：<?php print $item['create_datetime'];?></p>
+            <form action="./cart.php" method="post">
+                <input type="submit" value="カートに追加">
+                <input type="hidden" value="<?php print $item['id']?>">    
+            </form>
         <?php } ?>
 
     </body>
