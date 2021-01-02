@@ -1,5 +1,13 @@
 <?php
 
+function stock_check_item($stock, $amount){
+  $array_errors = [];
+  if($stock < $amount){
+    $array_errors[] = NOT_ENOUGH_STOCK; 
+  }
+  return $array_errors;
+}
+
 function find_already_item($dbh, $user_id, $item_id){
     $sql = "
     SELECT * FROM carts WHERE user_id = ? AND item_id = ?

@@ -20,6 +20,8 @@ define('OVER_LENGTH_STOCK',    '個数は100000個未満で入力してくださ
 define('EMPTY_FILE',          'ファイルを選択してください。');
 define('ILLEGAL_FILE_FORMAT', 'ファイル形式が異なります。画像ファイルはJPEGもしくはPNGのみ利用可能です');
 
+//カート処理用
+define('NOT_ENOUGH_STOCK', '在庫数が足りません');
 
 
 ?>
