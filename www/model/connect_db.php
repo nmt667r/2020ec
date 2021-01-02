@@ -20,7 +20,7 @@
           $statement->execute($params);
           return $statement->fetch();
         }catch(PDOException $e){
-          set_error('データ取得に失敗しました。');
+          throw $e; 
         }
         return false;
       }
@@ -31,7 +31,8 @@
           $statement->execute($params);
           return $statement->fetchAll();
         }catch(PDOException $e){
-          set_error('データ取得に失敗しました。');
+          throw $e; 
+          //set_error('データ取得に失敗しました。');
         }
         return false;
       }

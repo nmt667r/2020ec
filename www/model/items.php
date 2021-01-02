@@ -35,6 +35,13 @@ function get_all_items($dbh){
     return fetch_all_query($dbh, $sql);
   }
 
+  function find_item_by_id($dbh, $id){
+    $sql = "
+    SELECT * FROM items WHERE id = ?
+    ";
+    return fetch_query($dbh, $sql, array($id));
+  }
+
   function insert_item($dbh, $name, $price, $stock, $filename, $status){
     $status_value = PERMITTED_ITEM_STATUSES[$status];
     $sql = "
