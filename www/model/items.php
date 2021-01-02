@@ -59,3 +59,13 @@ function get_all_items($dbh){
     ";  
     return execute_query($dbh, $sql,array($name, $price, $stock, $filename, $status_value, date("Y/m/d H:i:s"), date("Y/m/d H:i:s")));
   }
+
+  function delete_item($dbh, $item_id){
+    $sql = "
+      DELETE FROM
+        items
+      WHERE
+        id = ?
+    ";  
+    return execute_query($dbh, $sql,array($item_id));
+  }
