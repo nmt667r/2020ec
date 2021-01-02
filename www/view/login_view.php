@@ -10,7 +10,7 @@
             <p><?php print $read; ?></p>
         <?php } ?>
         <form method="POST">
-            名前<input type="text" name="login_name">
+            アカウント名<input type="text" name="account">
             パス<input type="text" name="login_password">
             <input type="submit" name="ログイン">
         </form>

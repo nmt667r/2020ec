@@ -1,9 +1,9 @@
 <?php
 
-    function check_empty_post($name, $password){
+    function check_empty_post($account, $password){
         $array_errors = [];
-        if(empty($name)){
-            $array_errors[] = EMPTY_NAME;
+        if(empty($account)){
+            $array_errors[] = EMPTY_ACCOUNT;
         }
         if(empty($password)){
             $array_errors[] = EMPTY_PASSWORD;
@@ -11,9 +11,9 @@
         return $array_errors;
     }
 
-    function check_login_user($name, $password, $dbh){        
+    function check_login_user($account, $password, $dbh){        
         $array_errors = [];
-        $user = find_user($name,$dbh);
+        $user = find_user($account,$dbh);
         if(empty($user)){
             $array_errors[] = FAILED_LOGIN;
         } else if($user['password'] !== $password){
@@ -21,17 +21,4 @@
         }
         return $array_errors;
     }
-
-    function find_user($name,$dbh){
-        $user = "";
-        try{
-            $sql = 'SELECT * from users where name = ?';
-            $stmt = $dbh -> prepare($sql);
-            $stmt ->bindValue(1,$name, PDO::PARAM_INT);
-            $stmt ->execute();
-            $user = $stmt->fetch();                  
-        }catch(PDOException $e){
-            throw $e;
-        }
-        return $user;
-    }
+    
