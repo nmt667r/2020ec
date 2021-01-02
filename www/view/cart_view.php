@@ -16,7 +16,12 @@
             <p><?php print $cart['amount']; ?>個</p>
             <p>小計：<?php print $cart['amount'] * $cart['price']; ?>円</p>
             <!-- <p><img src="<?php print ITEMS_IMG_DIR . $cart['img']; ?>"></p> -->
-            <p>更新日時：<?php print $cart['update_datetime'];?></p>            
+            <p>更新日時：<?php print $cart['update_datetime'];?></p>
+            <form method="post">
+                <input type="submit" value="カートから削除">
+                <input type="hidden" name="item_id" value="<?php print $cart['item_id']; ?>"> 
+                <input type="hidden" name="action" value="delete">
+            </form>           
             <?php $total = $total + $cart['amount'] * $cart['price'];?>
         <?php } ?>
         <h4>合計：<?php print $total?>円</h4>
@@ -24,6 +29,7 @@
             <input type="submit" value="購入">  
             <input type="hidden" name="action" value="buy">
         </form>
+        
 
     </body>
 </html>

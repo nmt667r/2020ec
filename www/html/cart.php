@@ -36,7 +36,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         buy_item($dbh, $user_id, $carts);       
         header('Location: itemlist.php');
         exit;
-    }        
+    } else if($_POST['action'] ==='delete'){
+        delete_cart_item($dbh, $user_id, $_POST['item_id']);        
+    }   
 }
 
 $cart = get_user_cart($dbh, $user_id);
