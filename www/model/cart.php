@@ -110,4 +110,14 @@ function update_each_items_stock($dbh, $carts){
   }
 }
 
+function delete_cart_item($dbh, $user_id, $item_id){
+  $sql = "
+    DELETE FROM
+      carts
+    WHERE
+    user_id = ? AND item_id = ?
+  ";  
+  return execute_query($dbh, $sql,array($user_id, $item_id));
+}
+
 
