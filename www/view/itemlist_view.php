@@ -19,7 +19,8 @@
             <form action="./cart.php" method="post">
                 <input type="submit" value="カートに追加">
                 <input type="hidden" name="amount" value="1"> 
-                <input type="hidden" name="item_id" value="<?php print $item['id']?>">    
+                <input type="hidden" name="item_id" value="<?php print $item['id']?>">
+                <input type="hidden" name="action" value="insert">   
             </form>
         <?php } ?>
 
