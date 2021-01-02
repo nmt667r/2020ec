@@ -42,3 +42,72 @@ function update_cart($dbh, $cart_id, $amount){
   ";
   return execute_query($dbh, $sql,array($amount,$cart_id));
 }
+
+function get_user_cart($dbh, $user_id){
+  $sql = "
+  SELECT
+    items.id AS item_id,
+    items.name,
+    items.price,
+    items.stock,
+    items.status,
+    items.img,
+    carts.id AS carts_id,
+    carts.user_id,
+    carts.amount,
+    carts.update_datetime
+  FROM
+    carts
+  JOIN
+    items
+  ON
+    carts.item_id = items.id
+  WHERE
+    carts.user_id = ?
+  ";
+
+  return fetch_all_query($dbh, $sql,array($user_id));
+}
+
+function delete_user_carts($dbh, $user_id){
+    $sql = "
+      DELETE FROM
+        carts
+      WHERE
+        user_id = ?
+    ";  
+  return execute_query($dbh, $sql,array($user_id));
+}
+
+function buy_item($dbh, $user_id, $carts){
+  $dbh->beginTransaction();
+  try{
+    delete_user_carts($dbh, $user_id);
+    update_each_items_stock($dbh, $carts); 
+    $dbh->commit();
+  }catch(PDOException $e){
+    throw $e; 
+  }
+}
+
+function update_items_stock($dbh, $item_id, $amount){
+  $item = find_item_by_id($dbh, $item_id);
+  $stock = $item['stock'] - $amount;
+  $sql = "
+    UPDATE
+      items
+    SET
+      stock = ?
+    WHERE
+      id = ?
+  ";
+  return execute_query($dbh, $sql,array($stock,$item_id));
+}
+
+function update_each_items_stock($dbh, $carts){
+  foreach($carts as $cart){
+    update_items_stock($dbh, $cart['item_id'], $cart['amount']);
+  }
+}
+
+
