@@ -12,6 +12,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $img_name = upload_image($_FILES);
             insert_item($dbh, $_POST['item_name'], $_POST['price'], $_POST['stock'], $img_name, $_POST['status']);
         }
+    } else if($_POST['action'] ==='delete'){
+        delete_item($dbh, $_POST['item_id']);
+        unlink(ITEMS_IMG_DIR . $_POST['img']);
     }
 }
 
